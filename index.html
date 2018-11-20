@@ -1,0 +1,748 @@
+<!-- Style Google API Autocomplete: http://stackoverflow.com/questions/7893857/how-do-you-style-the-dropdown-on-google-places-autocomplete-api -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>HCO Form 2.0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style type="text/css">
+	.group:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+  	body {
+  		display: table;
+  		position: absolute;
+    	width: 100%;
+    	height: 100%;
+  		color: #7d7d7d;
+  		font-family: arial;
+  		font-size: 16px;
+  	}
+  	section {
+  		margin: 40px;
+  	}
+  	#true-form {
+  		display: table-cell;
+  		vertical-align: middle;
+  	}
+  	.wrapper {
+  		display: table;
+    	width: 100%;
+  	}
+  	.sec {
+  		display: table-cell;
+  		vertical-align: middle;
+  	}
+  	.sec-container {
+  		margin-left: auto;
+  		margin-right: auto;
+  		max-width: 80%;
+  	}
+  	.hide {
+  		display: none;
+  	}
+  	.addr-icon {
+  		float: left;
+  		width: 10%;
+  		margin-right: 2.5%;
+  	}
+  	.addr-input {
+  		float: left;
+  		width: 87.5%;
+  		margin: 0;
+  		padding: 0;
+  	}
+  	#formaddr:focus, .formfield:focus {
+  		outline: none;
+  	}
+  	.addr-submit-container {
+  		width: 100%;
+  		margin-right: 0;
+  		padding: 0;
+  	}
+
+  	.addr, .structure, .details, .contact ,.urgency {
+  		display: none;
+  	}
+  	#loc-icon {
+  		display: inline-block;
+		width: 100%;
+		text-align: right;
+		padding-right: 20px;
+		line-height: 1.5;
+  		vertical-align: middle;
+  		font-size: 2.5em;
+		color: #de0f2e;
+  		}
+  	input[type="button"], button, #formaddr, .formfield, select {
+  		box-sizing: border-box;
+  		width: 100%;
+  		height: 100%;
+  		color: #7d7d7d;
+  		font-size: 16px;
+  		background-color: #fff;
+  		margin-bottom: 15px;
+  		padding: 20px;
+  		border: 1px solid #7d7d7d;
+  		border-radius: 0;
+  	}
+ 	input[type="button"]:focus, button:focus {
+  		outline: none;
+  	}
+
+/*Google Places Container*/
+  	.pac-container{
+  		max-width: 87.5%;;
+  		padding: 10px;
+  		border: none;
+  	}
+  	.pac-item {
+  		padding: 10px;
+  		border: none;
+  	}
+  	.struct-btn-container {
+  		display:none;
+  		box-sizing: border-box;
+  		float: left;
+  		width: 33%;
+  		height: 100px;
+  		font-size: 16px;
+  		border: 1px solid #fff;
+  	}
+  	nav {
+  		margin: 0px;
+  		margin-top: 20px;
+  	}
+  	footer {
+  		margin: 20px 0;
+  	}
+  	footer > p {
+  		text-align: center;
+  	}
+  	h2 {
+  		display: none;
+  		color: #7d7d7d;
+  		text-align: center;
+  	}
+  	.field-symbol {
+  		float: left;
+  		box-sizing: border-box;
+  		width: 15%;
+  		color: #7d7d7d;
+  		font-size: 16px;
+  		text-align: center;
+  		padding: 20px 0;
+  	}
+  	.field-input {
+  		width: 85%;
+  		float: right;
+  	}
+  	.addr-submit, .addr-submit:hover  {
+  		color: #7d7d7d;
+  		background-color: transparent;
+  	}
+  	.true-submit {
+  		color: #fff;
+  		background: #1f198c; 
+  	}
+  	.true-submit:hover {
+  		color: #fff;
+  		background-color: #117A31; 
+  	}
+  	.error {
+  		color: #de0f2e;
+  	}
+  	.return-conatainer {
+  		background: transparent;
+
+  	}
+  	.return {
+		display: block;
+	    max-width: 100px;
+	    background: transparent;
+	    color: #7d7d7d;
+	    margin: 40px auto;
+	    text-align: center;
+	    border: none;
+  	}
+  	.return:hover {
+  		background: transparent;
+  		color: #7d7d7d;
+  		opacity: 0.5;
+  	}
+  	.phone::-webkit-inner-spin-button, 
+	.phone::-webkit-outer-spin-button { 
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    appearance: none;
+	    margin: 0; 
+	}
+  	@media (min-width: 860px) {
+  		.name {
+  			float: left;
+  			width: 50%;
+  		}
+  		.fname, .lname {
+  			width:98.5%;
+  		}
+  		.lname {
+  			float: right;
+  		}
+	  	.half {
+		    width: 21%;
+		    float: left;
+		    margin: 2%;
+	  	}
+	  	.half-btm {
+		    width: 46%;
+		    float: left;
+		    margin: 2%;
+	  	}
+	  	.sec {
+	  		margin-right: 0;
+	  		margin-left: 2.5%;
+	  	}
+	  	.addr-input {
+		    float: left;
+		    width: 53%;
+		    margin: 0;
+		    padding: 0;
+		}
+	  	#formaddr {
+	  		border-right: none;
+	  	}
+	  	.addr-submit-container {
+	  		float: right;
+	  		width: 32%;
+	  		margin-right: 2.5%;
+	  		padding: 0;
+	  	}
+	  	.half-btm > .field-symbol  {
+	  		width:7%;
+	  	}
+	   	.half-btm > .field-input  {
+	  		width:93%;
+	  	}
+	  	.field-symbol {
+	  		margin-bottom: 5px; 
+	  	}
+  		.pac-container {
+  			max-width: 53%
+  		}
+   	}
+  </style>
+</head>
+<body>
+	<form accept-charset="UTF-8" action="#" id="true-form" class="infusion-form group">	
+		<div class="source">
+			<input type="hidden" id="street_number" data-source="street-num">
+			<input type="hidden" id="route" data-source="street-addr">
+			<input type="hidden" id="locality" data-source="city">
+			<input type="hidden" id="administrative_area_level_1" data-source="state">
+			<input type="hidden" id="postal_code" data-source="zip">
+			<input type="hidden" id="country" data-source="country">
+			<input type="hidden" data-source="seller">
+			<input type="hidden" data-source="structure">
+			<input type="hidden" data-destination="fname">
+			<input type="hidden" data-destination="lname">
+			<input type="hidden" data-destination="phone">
+			<input type="hidden" data-destination="email">
+			<input type="hidden" data-destination="listed">
+			<input type="hidden" data-destination="asking">
+			<input type="hidden" data-destination="street">
+			<input type="hidden" data-destination="year">
+			<input type="hidden" data-destination="mortgage">
+			<input type="hidden" data-destination="beds">
+			<input type="hidden" data-destination="baths">
+			<input type="hidden" data-destination="sqft">
+			<input type="hidden" data-destination="occupancy">
+			<input type="hidden" data-destination="rent">
+			<input type="hidden" data-destination="lease">
+			<input type="hidden" data-destination="term">
+			<input type="hidden" data-destination="reason">
+			<input type="hidden" data-destination="upgrade">
+			<input type="hidden" data-destination="ready">
+			<input type="hidden" data-destination="timeframe">
+		</div>
+		<nav class="group">
+			<div style="width: 300px; margin: auto"><a href="./index.html"><img style="width: 100%" src="img/true-cash-buyers.png"></a></div>
+			
+		</nav>
+		<div class="wrapper group">
+			<section class="sec addr group">
+				<div class="sec-container group">
+					<div class="addr-icon">
+						<i class="fa fa-map-marker fa-2x" id="loc-icon" aria-hidden="true"></i>
+					</div>
+					<div class="addr-input">
+						<input type="text" id="formaddr" title="Type your address, then click &quot;Verify&quot;." required autofocus="">
+						<div class="err-msg"></div>
+					</div>
+					<div class="addr-submit-container">
+						<button id="addr-btn" class="addr-submit true-submit">Verify</button>
+					</div>
+				</div>
+			</section>
+			<section class="sec structure group">
+				<div class="sec-container group">
+					<h2>What type of property is at this location?</h2>
+					<div class="struct-btn-container">
+						<button class="true-submit struct-btn" disabled value="Single Family Home"><i class="fa fa-home" aria-hidden="true"></i><input type="hidden" value="Single Family Home"><br>Single-Family</button>
+					</div>
+					<div class="struct-btn-container">
+						<button class="true-submit struct-btn" disabled value="Multi Family Home"><i class="fa fa-home" aria-hidden="true"></i><br>Multi-Family</button>
+					</div>
+					<div class="struct-btn-container">
+						<button class="true-submit struct-btn" disabled value="Townhome or Condo"><i class="fa fa-home" aria-hidden="true"></i><br>Town-house</button>
+					</div>
+					<div class="struct-btn-container">
+						<button class="true-submit struct-btn" disabled value="Commercial"><i class="fa fa-building" aria-hidden="true"></i><br>Comm.<br><small>(Business)</small></button>
+					</div>
+					<div class="struct-btn-container">
+						<button class="true-submit struct-btn" disabled value="Mobile Home in Lot">
+							<i class="fa fa-bus" aria-hidden="true"></i>
+							<br>Mobile-Home<br><small>(Lot)</small><br>
+						</button>
+					</div>
+					<div class="struct-btn-container">
+						<button class="true-submit struct-btn" disabled value="Mobile Home with Land"><i class="fa fa-bus" aria-hidden="true"></i><br>Mobile-Home<br><small>(Land)</small></button>
+					</div>
+				</div>
+				<div class="return-container group">
+					<button class="return"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i><br><small>Back</small></button>
+				</div>
+			</section>
+			<section class="sec details group">
+				<div class="sec-container group">
+					<h2></h2>
+					<div class="field-group">
+						<div class="group">
+							<h2>Property Details</h2>						
+							<div class="group details-group half mobile-year hide">					
+	            				<div class="err-msg"></div>
+	            				<span class="field-symbol"><i class="fa fa-bus" aria-hidden="true"></i></span>
+								<input type="number" id="src-2" class="formfield field-input" min="1950" placeholder="Make Year**" title="The year of your mobile home?" data-source="year" required>
+							</div>
+							<div class="group details-group half mortgage hide">						
+	            				<div class="err-msg"></div>
+	            				<span class="field-symbol"><i class="fa fa-usd" aria-hidden="true"></i></span>
+								<input type="text" id="src-3" class="formfield field-input mortgage currency" placeholder="Mortgage" title="Mortgage on this property?" data-source="mortgage">
+							</div>
+						</div>
+						<div class="group">	
+							<div class="group details-group half">
+	            				<div class="err-msg"></div>
+	            				<span class="field-symbol"><i class="fa fa-bed" aria-hidden="true"></i></span>
+								<input type="number" id="src-4" class="formfield field-input beds" min="1" max="5" placeholder="Beds**" title="Number of rooms at this property?" data-source="beds" required>
+							</div>
+							<div class="group details-group half">
+	            				<div class="err-msg"></div>
+	            				<span class="field-symbol"><i class="fa fa-bath" aria-hidden="true"></i></span>
+								<input type="number" id="src-5" class="formfield field-input baths" min="1" max="5" placeholder="Baths**" title="Number of bathrooms at this property?" data-source="baths" required>
+							</div>
+							<div class="group details-group half">
+	            				<div class="err-msg"></div>
+	            				<span class="field-symbol"><i class="fa fa-object-ungroup" aria-hidden="true"></i></span>
+								<input type="number" id="src-6" class="formfield field-input sqft" min="88" step="0.5" placeholder="Sq. Ft." title="Total Square feet of this property?" data-source="sqft">
+							</div>
+							<div class="group details-group half">
+	            				<div class="err-msg"></div>
+	            				<span class="field-symbol"><i class="fa fa-users" aria-hidden="true"></i></span>
+								<select id="src-7" class="formfield field-input occupancy" title="How is this property occupied?" data-source="occupancy" required>
+									<option selected disabled hidden>Occupancy**</option>
+									<option value="Vacant">Vacant</option>
+									<option value="Tenant Occupied">Tenant</option>
+									<option value="Owner Occupied">Owner</option>
+								</select>
+							</div>
+						</div>
+						<div class="group hide tenant">
+							<h2>Tenenat Details</h2>
+							<div class="group details-group half">
+	            				<div class="err-msg"></div>
+	            				<span class="field-symbol"><i class="fa fa-usd" aria-hidden="true"></i></span>
+								<input type="text" id="src-8" class="formfield field-input rent currency" placeholder="Rent Charge**" title="The rent you charge?" data-source="rent" required>
+							</div>
+							<div class="group details-group half">
+	            				<div class="err-msg"></div>
+	            				<span class="field-symbol"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+								<select id="src-9" class="formfield field-input lease" title="Type of lease with your tenant?" data-source="lease" required>
+									<option selected disabled hidden>Lease Type**</option>
+									<option value="No Lease">None</option>
+									<option value="Month to Month">Monthly</option>
+									<option value="Year">Annually</option>
+								</select>
+							</div>
+							<div class="group details-group half">
+	            				<div class="err-msg"></div>
+	            				<span class="field-symbol"><i class="fa fa-hourglass-end" aria-hidden="true"></i></span>
+								<input id="src-10" type="text" onfocus="(this.type='date')" onfocusout="(this.type='date')" class="formfield field-input term" placeholder="Term. End" title="When does the lease end?" data-source="term">
+							</div>
+							<div class="group details-group half">
+	            				<div class="err-msg"></div>
+	            				<span class="field-symbol"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
+								<select id="src-11" class="formfield field-input current" title="Is your tenant current with their rent?" data-source="current" required>
+									<option selected disabled hidden>Rent Current**</option>
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+								</select>
+							</div>
+						</div>
+						<div class="group">	
+							<h2>Offer Details</h2>	
+							<div class="group details-group half-btm">
+								<div class="err-msg"></div>
+								<span class="field-symbol"><i class="fa fa-list-alt" aria-hidden="true"></i></span>
+								<select type="text" id="src-12" class="formfield field-input listed" title="Is this property listed on the MLS?" data-source="listed" required>
+									<option selected="true" disabled>MLS Listed**</option>
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
+								</select>
+							</div>
+	              			<div class="group details-group half-btm">
+	              				<div class="err-msg"></div>
+	              				<span class="field-symbol"><i class="fa fa-usd" aria-hidden="true"></i></span>
+								<input type="text" id="src-13" class="formfield field-input asking currency" placeholder="Asking Price**" title="What is your asking price?" data-source="asking" required>
+	              			</div>
+						</div>
+					</div>
+					<div class="details-btn">
+						<button class="details-submit true-submit"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i><br>A few more questions.</button>
+					</div>
+				</div>
+				<div class="return-container group">
+					<button class="return"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i><br><small>Back</small></button>
+				</div>
+			</section>
+			<section class="sec urgency group">
+				<div class="sec-container group">
+					<div class="group field-group">
+						<h2>Tell us about this property.</h2>				
+						<div class="group">
+							<div class="err-msg"></div>
+							<input type="textarea" id="src-14" class="formfield reason" placeholder="Reason Selling" title="Why are you looking for offers on this property?" data-source="reason">
+						</div>
+						<div class="group">
+							<div class="err-msg"></div>
+							<input type="textarea" id="src-15" class="formfield upgrade" placeholder="Upgraded/Replaced(last 5yrs)" title="Anything upgraded/replaced in the last 5 years?" data-source="upgrade">
+						</div>				
+						<div class="group">
+							<div class="err-msg"></div>
+							<input type="textarea" id="src-16" class="formfield needs" placeholder="Move-in Ready Needs" title="Would we need to fix anything?" data-source="ready">
+						</div>
+						<div class="group">
+							<div class="err-msg"></div>
+							<select id="src-17" class="formfield timeframe" title="How quick are you looking to sell?" data-source="timeframe" required>
+								<option selected disabled hidden>Timeframe to Sell**</option>
+								<option value="ASAP">ASAP</option>
+								<option value="Next 3 Months">Next 3 Months</option>
+								<option value="Next 6 Months">Next 6 Months</option>
+								<option value="I'm in no rush.">I'm in no rush.</option>
+							</select>
+						</div>
+					</div>
+					<div class="urgency-btn">
+						<button class="urgency-submit true-submit"><i class="fa fa-comments-o" aria-hidden="true"></i><br>Let's talk.</button>
+					</div>
+				</div>
+				<div class="return-container group">
+					<button class="return"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i><br><small>Back</small></button>
+				</div>
+			</section>
+			<section class="sec contact group">
+				<div class="sec-container group">
+					<h2>Let us contact you.</h2>
+					<div class="field-group">
+						<div class="group half-btm">						
+							<span class="field-symbol"><i class="fa fa-user" aria-hidden="true"></i></span>
+							<div class="err-msg"></div>
+							<input type="text" id="src-18" class="formfield field-input fname" placeholder="First Name**" title="First name?" data-source="fname" required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,52}$">
+						</div>
+						<div class="group half-btm">
+							<span class="field-symbol"><i class="fa fa-user" aria-hidden="true"></i></span>
+							<div class="err-msg"></div>
+							<input type="text" id="src-19" class="formfield field-input lname" placeholder="Last Name**" title="Last name?" data-source="lname" required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,52}$">
+						</div>					
+						<div class="group half-btm">
+							<span class="field-symbol"><i class="fa fa-phone" aria-hidden="true"></i></span>
+							<div class="err-msg"></div>
+							<input type="number" id="src-20" class="formfield field-input phone" placeholder="Phone** ex.5555555555" title="The best number to contact you at?" data-source="phone" required maxlength="10" minlength="10">
+						</div>
+						<div class="group half-btm">
+							<span class="field-symbol"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+							<div class="err-msg"></div>
+							<input type="email" id="src-21" class="formfield field-input email" placeholder="Email**" title="The best email to reach you with?" data-source="email" required>
+						</div>
+					</div>
+					<div class="contact-btn">
+						<button class="contact-submit true-submit"><i class="fa fa-usd fa-2x" aria-hidden="true"></i><br>Receive your offer!</button>
+					</div>
+				</div>
+				<div class="return-container group">
+					<button class="return"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i><br><small>Back</small></button>
+				</div>
+			</section>
+			<div class="processing group" style="display: none; z-index:9; width: 100%; height: 100%;">
+				<div style="display:table-cell; vertical-align: middle;" class="group"><h2 style="display: block;"><img src="img/loading_spinner.gif" width="20px"> Your property is being processed. Please wait...</h2></div>
+			</div>
+		</div>
+		<footer class="group">
+			<p><span class="copyright"></span> Copyright. | True Cash Buyers.</p>
+		</footer>	
+	</form>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.18.0/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/validate.msgs.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUP8-5Lbhvkqp_zednBAsHZQy1cnQIPgA&libraries=places&components=country:use"></script>
+	<script type="text/javascript">
+		(function($){
+	  		$(document).ready(function() {
+  				var geocoder;
+	  			function getToday() {
+	  				var today = new Date(),
+	  				dd        = today.getDate(),
+					mm        = today.getMonth()+1,
+					yyyy      = today.getFullYear();
+
+					if(dd<10) {
+					    dd='0'+dd
+					} 
+
+					if(mm<10) {
+					    mm='0'+mm
+					} 
+					today = mm+'/'+dd+'/'+yyyy;
+					return today;
+	  			}
+	  			function getNowTime() {
+	  				var millisSinceEpoch = $.now(),
+					secondsSinceEpoch    = (millisSinceEpoch / 1000) | 0,
+					secondsInDay         = ((secondsSinceEpoch % 86400) + 86400) % 86400,
+					seconds              = secondsInDay % 60,
+					minutes              = ((secondsInDay / 60) | 0) % 60,
+					hours                = (secondsInDay / 3600) | 0;
+					return hours + (minutes < 10 ? ":0" : ":")
+					+ minutes + (seconds < 10 ? ":0" : ":")
+					+ seconds;
+	  			}
+	  			function autoAddr() {
+	  				var placeSearch, autocomplete;
+					var formAddr        = $('#formaddr:first')[0],
+					autoCompleteOptions = {types:['geocode'],componentRestrictions:{country: 'usa'}},
+					autocomplete 	    = new google.maps.places.Autocomplete(formAddr, autoCompleteOptions);
+	  			}
+  				function AddressValidator(value, element, paras) {
+					var CurrentAddress = value;
+					if (value.length == 0) {
+						$('.addr-submit').html('Verify');
+						return true;
+					}
+					if ($(element).data("LastAddressValidated") == CurrentAddress) {
+						return $(element).data("IsValid");
+					}
+					$(element).data("IsChecking", true);
+					$(element).data("LastAddressValidated", CurrentAddress);
+					CurrentAddress = CurrentAddress.replace(/\n/g, "");
+					var geocoder = new google.maps.Geocoder();
+					geocoder.geocode({ 'address': CurrentAddress }, function (results, status) {
+						if (status == google.maps.GeocoderStatus.OK) {
+							var address = results[0].formatted_address;
+							numCommas = address.match(/,/g).length;
+							if (numCommas >= 3) {
+								componentForm   = {
+								  street_number: 'short_name',
+								  route: 'long_name',
+								  locality: 'long_name',
+								  administrative_area_level_1: 'short_name',
+								  country: 'long_name',
+								  postal_code: 'short_name'
+								}
+	  							$('.addr-submit').html('<i class="fa fa-mouse-pointer" aria-hidden="true"></i> Select property type.');
+								$(element).val(address).siblings('.err-msg').children('label').html('We have verified this address.');
+								$(element).val(address).siblings('.err-msg').children('.error').css('color','green !important');
+								$(element).data("LastAddressValidated", address);
+								$(element).data("IsValid", true);
+								function fillInAddress() {
+									var place = results[0];
+									for (var i = 0; i < place.address_components.length; i++) {
+										var addressType = place.address_components[i].types[0];
+										if (componentForm[addressType]) {
+											var val = place.address_components[i][componentForm[addressType]];
+											document.getElementById(addressType).value = val;
+										}
+									}
+								}
+								fillInAddress();
+							} else {
+  								$('.addr-submit').html('Verify');
+								$(element).data("IsValid", false);
+							}
+						} else {
+						$('.addr-submit').html('Verify');
+						  $(element).data("IsValid", false);
+						}
+					});
+					$('.addr-submit').html('Verify');
+					return true;
+				}
+  				function validateForm(){
+  					var form  = $('#true-form');
+	  				form.validate({
+	  					ignore: ':not(":visible")',
+	  					focusInvalid: false,
+	  					onkeyup: function (element, event) {
+							if (event.which === 9 && this.elementValue(element) === "") {
+								return;
+							} else {
+								if (element.id != 'formaddr') {
+								   this.element(element);
+								}
+							}
+						},
+	  					onfocus: function(element) {
+					        $(element).valid();
+					    },
+	  					onfocusout: function(element) {
+					        $(element).valid();
+					    },
+
+						invalidHandler: function(form, validator) {
+							if (!validator.numberOfInvalids())
+							    return;
+							$('html, body').animate({
+							    scrollTop: $(validator.errorList[0].element).offset().top
+							}, 1000);
+						},  
+	  					errorPlacement: function(error, element) {
+						    error.appendTo(element.siblings('.err-msg'));
+						}
+				    });
+				    $.validator.addMethod("fulladdress", AddressValidator);
+  				}
+  				function validateAddr() {
+  					if ($('#formaddr').is(':visible')) {					
+					    $('#formaddr').rules("add", {
+							fulladdress: true,
+							messages: {
+								fulladdress: 'Searching...'
+							}
+					    });
+					    $('#formaddr').on('click dblclick mouseover mousemove focus focusout',function(){
+					    });
+  					} else {
+  						$('input, select, textarea').each(function(){$(this).rules( "remove", "fulladdress" );});
+  					}
+  				}
+  				function initFields() {
+  					$('.addr').fadeIn(800).css({display:'table-cell'});
+	  				$('.mobile-year').attr('max',(new Date).getFullYear());
+	  				$('.currency').mask("#,##0.00", {reverse: true});
+  					$('.occupancy').change(function() {
+  						if($('.occupancy').val() == 'Tenant Occupied') {
+  							$('.tenant').delay(200).show(400);
+  						} else {
+  							$('.tenant').delay(200).hide(400);
+  						}
+  					});
+  				}
+	  			function formNav() {
+	  				$('.true-submit').click(function(e) {
+	  					e.preventDefault();
+	  					validateAddr();
+	  					var pressedBtn = $(this);
+	  					if ($('input,select').valid()) {
+	  						if (pressedBtn.hasClass('addr-submit')) {
+	  							$('#formaddr').valid()
+		  						if ($('#formaddr').valid()) {
+  									pressedBtn.parents().eq(2).hide(200).delay(400).next().delay(400).fadeIn(800).css({display:'table-cell'});
+		  							$('h2').delay(800).show(400);
+				  					$('.struct-btn-container').delay(200).each(function(index){
+								     	pressedBtn.delay(600*index).fadeIn(300);
+								      	if (pressedBtn.is(':last-child')) {
+									      	var maxTime = 2000,
+											time 		= 0;
+
+											var interval = setInterval(function () {
+												if(pressedBtn.css('opacity') == '1') {
+													$('.struct-btn').removeAttr('disabled');
+														clearInterval(interval);
+												} else {
+													if (time > maxTime) {
+															clearInterval(interval);
+														return;
+													}
+													time += 100;
+													}
+											}, 200);
+
+											interval;  	
+									    }
+				  					}).delay(50).fadeTo('slow',0.3).fadeTo('slow',1);
+			  					} 							
+	  						} else if (pressedBtn.hasClass('struct-btn')) {
+		  						var btnVal = pressedBtn.val();
+								$('input[data-source="structure"]').val(btnVal);
+			  					if (pressedBtn.val() == 'Mobile Home in Lot') {
+			  						$('.mobile-year').removeClass('hide');
+			  					} else if (pressedBtn.val() == 'Mobile Home with Land') {
+			  						$('.mobile-year').removeClass('hide');
+			  						$('.mortgage').removeClass('hide');
+			  					} else {
+			  						$('.mortgage').removeClass('hide');
+			  					}
+			  					pressedBtn.parents().eq(2).hide(200).delay(400).next().delay(400).fadeIn(800).css({display:'table-cell'}).find('.true-submit').delay(50).fadeTo('slow',0).fadeTo('slow',1);
+			  				} else if (pressedBtn.hasClass('contact-submit')) {
+								$('input[data-source="seller"]').val($('.fname').val() + ' ' + $('.lname').val());
+								$('input[data-source="street"]').val($('#street_number').val() + ' ' + $('#route').val());
+								$('input[data-destination="date"]').val(getToday());
+								$('input[data-destination="time"]').val(getNowTime());
+								function prepSubmit(){
+				  					$('[data-source]').each(function() {
+										$('[data-destination="'+$(this).attr("data-source")+'"]').val($(this).val());
+									});
+									pressedBtn.parents().eq(2).hide(200).delay(400).next().delay(400).fadeIn(800).css({display:'table'});
+									function hcoSubmit() {
+				  						location.reload();
+									}
+									setTimeout(hcoSubmit, 500);
+								}
+								setTimeout(prepSubmit, 15);
+			  				} else {
+			  					pressedBtn.parents().eq(2).hide(200).delay(400).next().delay(400).fadeIn(800).css({display:'table-cell'}).find('.true-submit').delay(50).fadeTo('slow',0).fadeTo('slow',1);
+			  				} 			  					
+	  					}
+	  				});
+	  				$('.return').click(function(e) {
+	  					e.preventDefault();
+	  					validateAddr();
+	  					if ($(this).parents().eq(1)[0] == $('section.structure')[0]) {
+	  						location.reload();
+	  					} else {
+	  						$(this).parents().eq(1).hide(200).prev().show(400);
+	  					}
+	  				});
+	  			}
+	  			function init() {
+	  				var today = new Date();
+	  				$('.copyright').html(today.getFullYear());
+	  				if ($('label.error:contains("Wehaveverifiedthisaddress.")').length > 0) {
+					    $('label.error').css('color','green !important');
+					}
+	  				validateForm();
+	  				validateAddr()
+	  				autoAddr();
+	  				initFields();
+	  				formNav();
+				}
+				init();
+			});
+		}(jQuery));
+	</script>
+</body>
+</html>
